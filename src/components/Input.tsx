@@ -1,28 +1,36 @@
-import type { InputProps} from "../interfaces/inputProps"
+import type { InputProps } from '../interfaces/inputProps';
 
-const Input: React.FC<InputProps> = ({label, maxPoints, value, name, onChange}) => {
-  const isValid: boolean = value !== '' && Number(value) > maxPoints;
+const Input = ({ name, type, placeholder, value, onChange }: InputProps) => {
+  const baseStyles = `
+    w-full px-5 py-3 border border-gray-400 
+    text-gray-700 placeholder-gray-400 
+    focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 
+    transition-colors
+  `;
+
+  if (type === 'textarea') {
+    return (
+      <textarea
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        rows={5}
+        className={`${baseStyles} rounded-[20px] resize-none`}
+      />
+    );
+  }
 
   return (
-    <div className="p-4 bg-white rounded-xl shadow-lg border-gray-100 transition duration-300">
-      <label className="block text-lg font-bold text-gray-700 mb-2">
-        {label}
-      </label>
+    <input
+      type={type} 
+      name={name}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      className={`${baseStyles} rounded-full`}
+    />
+  );
+};
 
-      <p className="text-sm text-gray-500 mb-3">
-        Max: {maxPoints} pts
-        </p>
-      <input
-        type="number"
-        value={value}
-        onChange={(e) => onChange(name, e.target.value)}
-        min={0}
-        max={maxPoints}
-        placeholder={`0 - ${maxPoints}`}
-        className={`w-full p-3 rounded-lg border-2 text-3xl font-extrabold text-center font-mono transition duration-150 ${isValid ? 'border-red-500 text-red-500  focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50' : 'border-gray-300'}`}
-      />
-    </div>
-  )
-
-} 
 export default Input;

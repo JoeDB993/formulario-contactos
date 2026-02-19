@@ -1,8 +1,9 @@
-import type { NombreParcial } from "./parciales";
+import type { ChangeEvent } from 'react';
+
 export interface InputProps {
-  label: string;
-  maxPoints: number;
-  value: number | string;
-  name: NombreParcial;
-  onChange: (name: NombreParcial, value: string) => void;
+  name: string;
+  type: 'text' | 'email' | 'textarea';
+  placeholder: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void; 
 }

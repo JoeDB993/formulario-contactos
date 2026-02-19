@@ -1,4 +1,4 @@
-import Nota from "./components/Nota"
+import FormularioContacto from "./components/formularioContacto"
 
 
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       
-      <Nota/> 
+      <FormularioContacto/> 
       
     </>
   )
